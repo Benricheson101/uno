@@ -1,5 +1,7 @@
 *
 !/**/
 !*.*
+!Makefile
+*.vim
 *.swp
 /pkg/proto

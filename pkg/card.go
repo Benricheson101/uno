@@ -1,6 +1,10 @@
 package pkg
 
-import "fmt"
+import (
+	"fmt"
+
+	pb "github.com/benricheson101/uno/pkg/proto"
+)
 
 type CardColor uint8
 
@@ -30,6 +34,17 @@ func (c CardColor) String() string {
 		return ""
 	}
 }
+
+// func CardColorFromUint(i int) CardColor {
+//   switch i {
+//   case 1: return Red
+//   case 2: return Blue
+//   case 3: return Green
+//   case 4: return Yellow
+//   case 5: return Black
+//   default: log.Fatalf("unknown card color %v", i)
+//   }
+// }
 
 type CardVal uint8
 
@@ -101,4 +116,15 @@ func (c Card) CanPlay(c2 Card) bool {
 
 func (c Card) String() string {
 	return fmt.Sprintf("%v %v", c.Color.String(), c.Val.String())
+}
+
+func (c Card) Proto() pb.Card {
+  return pb.Card{Color: pb.CardColor(c.Color), Val: pb.CardVal(c.Val)}
+}
+
+func CardFromProto(proto *pb.Card) Card {
+  color := CardColor(uint8(proto.Color.Number()))
+  val:=CardVal(uint8(proto.Val.Number()))
+
+  return Card{Color: color, Val: val}
 }

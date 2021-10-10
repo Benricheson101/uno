@@ -4,36 +4,74 @@ package uno;
 option go_package = "../pkg/proto";
 
 service Uno {
+  rpc PlayCard(PlayCardRequest) returns (CardStack);
+  rpc NewGame(NewGameRequest) returns (Game);
+  rpc NewPlayer(NewPlayerRequest) returns (Player);
+}
 
+enum CardColor {
+  Red = 0;
+  Blue = 1;
+  Green = 2;
+  Yellow = 3;
+  Black = 4;
+}
+
+enum CardVal {
+  Zero = 0;
+  One = 1;
+  Two = 2;
+  Three = 3;
+  Four = 4;
+  Five = 5;
+  Six = 6;
+  Seven = 7;
+  Eight = 8;
+  Nine = 9;
+
+  Skip = 10;
+  Rev = 11;
+  DrawTwo = 12;
+  Wild = 13;
+  WildDrawFour = 14;
 }
 
 message Card {
-  enum Color {
-    Red = 0;
-    Blue = 1;
-    Green = 2;
-    Yellow = 3;
-    Black = 4;
-  }
+  CardColor Color = 1;
+  CardVal Val = 2;
+}
 
-  enum Val {
-	  Zero = 0;
-	  One = 1;
-	  Two = 2;
-	  Three = 3;
-	  Four = 4;
-	  Five = 5;
-	  Six = 6;
-	  Seven = 7;
-	  Eight = 8;
-	  Nine = 9;
+message Deck {
+  repeated Card Cards = 1;
+}
 
-	  Skip = 10;
-	  Rev = 11;
-	  DrawTwo = 12;
-	  Wild = 13;
-	  WildDrawFour = 14;
-  }
+message CardStack {
+  repeated Card Cards = 1;
+}
+
+message Player {
+  bytes Id = 1;
+  bytes GameId = 2;
+  string Name = 3;
+}
+
+message Game {
+  bytes Id = 1;
+  repeated Player Players = 2;
+  CardStack CardStack = 3;
+  optional Player Winner = 4;
+}
+
+message PlayCardRequest {
+  Player Player = 1;
+  Card Card = 2;
+}
+
+message NewGameRequest {}
+
+message NewPlayerRequest {
+  bytes GameId = 1;
+  string Name = 2;
 }
 
 // vim:si

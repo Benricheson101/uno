@@ -6,7 +6,9 @@ import (
 	"time"
 )
 
-type Deck []Card
+type Deck struct {
+  Cards []Card
+}
 
 func NewDeck() Deck {
 	var cards = []Card{}
@@ -48,17 +50,17 @@ func NewDeck() Deck {
 		}
 	}
 
-	return cards
+  return Deck{Cards: cards}
 }
 
 func (d Deck) IsEmpty() bool {
-	return len(d) == 0
+	return len(d.Cards) == 0
 }
 
 func (d Deck) String() string {
 	cards := []string{}
 
-	for _, card := range d {
+	for _, card := range d.Cards {
 		cards = append(cards, card.String())
 	}
 
@@ -66,7 +68,7 @@ func (d Deck) String() string {
 }
 
 func (d Deck) Len() int {
-	return len(d)
+	return len(d.Cards)
 }
 
 func (d *Deck) Shuffle() {
@@ -74,9 +76,9 @@ func (d *Deck) Shuffle() {
 
 	if !d.IsEmpty() {
 		rand.Shuffle(
-			len(*d),
+			len(d.Cards),
 			func(i, j int) {
-				(*d)[i], (*d)[j] = (*d)[j], (*d)[i]
+				d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i]
 			},
 		)
 	}

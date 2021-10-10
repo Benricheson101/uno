@@ -1,39 +1,6 @@
-package card
+package pkg
 
 import "fmt"
-
-// type CardColor int8
-
-// const (
-// 	Red CardColor = iota
-// 	Blue
-// 	Green
-// 	Yellow
-
-// 	// Wild
-// 	Black
-// )
-
-// type CardVal int8
-
-// const (
-// 	Zero CardVal = iota
-// 	One
-// 	Two
-// 	Three
-// 	Four
-// 	Five
-// 	Six
-// 	Seven
-// 	Eight
-// 	Nine
-
-// 	Skip
-// 	Rev
-// 	DrawTwo
-// 	Wild
-// 	WildDrawFour
-// )
 
 type CardColor string
 

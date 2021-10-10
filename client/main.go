@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-  "github.com/benricheson101/uno/pkg/models/deck"
+  "github.com/benricheson101/uno/pkg"
 )
 
 func main() {
-	d := deck.NewDeck()
+	d := pkg.NewDeck()
 
 	fmt.Println(d)
 	fmt.Println(d.Len())

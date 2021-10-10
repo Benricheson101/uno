@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-  "github.com/benricheson101/uno/pkg"
+	"github.com/benricheson101/uno/pkg"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 	fmt.Println(d)
 	fmt.Println(d.Len())
 
-  d.Shuffle()
+	d.Shuffle()
 
 	fmt.Println(d)
 	fmt.Println(d.Len())

@@ -2,38 +2,93 @@ package pkg
 
 import "fmt"
 
-type CardColor string
+type CardColor uint8
 
 const (
-	Red    CardColor = "red"
-	Blue             = "blue"
-	Green            = "green"
-	Yellow           = "yellow"
+	Red CardColor = iota
+	Blue
+	Green
+	Yellow
 
 	// Wild
-	Black = "black"
+	Black
 )
 
-type CardVal string
+func (c CardColor) String() string {
+	switch c {
+	case Red:
+		return "red"
+	case Blue:
+		return "blue"
+	case Green:
+		return "green"
+	case Yellow:
+		return "yellow"
+	case Black:
+		return "black"
+	default:
+		return ""
+	}
+}
+
+type CardVal uint8
 
 const (
-	Zero  CardVal = "zero"
-	One           = "one"
-	Two           = "two"
-	Three         = "three"
-	Four          = "four"
-	Five          = "five"
-	Six           = "six"
-	Seven         = "seven"
-	Eight         = "eight"
-	Nine          = "nine"
+	Zero  CardVal = iota
+	One
+	Two
+	Three
+	Four
+	Five
+	Six
+	Seven
+	Eight
+	Nine
 
-	Skip         = "skip"
-	Rev          = "rev"
-	DrawTwo      = "draw_two"
-	Wild         = "wild"
-	WildDrawFour = "wild_draw_four"
+	Skip
+	Rev
+	DrawTwo
+	Wild
+	WildDrawFour
 )
+
+func (v CardVal) String() string {
+	switch v {
+	case Zero:
+		return "zero"
+	case One:
+		return "one"
+	case Two:
+		return "two"
+	case Three:
+		return "three"
+	case Four:
+		return "four"
+	case Five:
+		return "five"
+	case Six:
+		return "six"
+	case Seven:
+		return "seven"
+	case Eight:
+		return "eight"
+	case Nine:
+		return "nine"
+
+	case Skip:
+		return "skip"
+	case Rev:
+		return "rev"
+	case DrawTwo:
+		return "draw_two"
+	case Wild:
+		return "wild"
+	case WildDrawFour:
+		return "wild_draw_four"
+	default:
+		return ""
+	}
+}
 
 type Card struct {
 	Color CardColor
@@ -45,5 +100,5 @@ func (c Card) CanPlay(c2 Card) bool {
 }
 
 func (c Card) String() string {
-	return fmt.Sprintf("%v %v", c.Color, c.Val)
+	return fmt.Sprintf("%v %v", c.Color.String(), c.Val.String())
 }

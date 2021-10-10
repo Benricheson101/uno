@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package uno;
+option go_package = "../pkg/proto";
+
+service Uno {
+
+}
+
+message Card {
+  enum Color {
+    Red = 0;
+    Blue = 1;
+    Green = 2;
+    Yellow = 3;
+    Black = 4;
+  }
+
+  enum Val {
+	  Zero = 0;
+	  One = 1;
+	  Two = 2;
+	  Three = 3;
+	  Four = 4;
+	  Five = 5;
+	  Six = 6;
+	  Seven = 7;
+	  Eight = 8;
+	  Nine = 9;
+
+	  Skip = 10;
+	  Rev = 11;
+	  DrawTwo = 12;
+	  Wild = 13;
+	  WildDrawFour = 14;
+  }
+}
+
+// vim:si

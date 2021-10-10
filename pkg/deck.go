@@ -78,6 +78,6 @@ func (d *Deck) Shuffle() {
 			func(i, j int) {
 				(*d)[i], (*d)[j] = (*d)[j], (*d)[i]
 			},
-    )
+		)
 	}
 }

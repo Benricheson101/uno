@@ -87,8 +87,8 @@ func (cv CardValue) String() string {
 	panic("encountered invalid card value: " + string(cv))
 }
 
-func (c *Card) CanPlay(card *Card) bool {
-	return c.Color == card.Color || c.Val == card.Val
+func (c *Card) CanPlay(ca *Card) bool {
+	return c.Color == ca.Color || c.Val == ca.Val || ca.Val == WILD || ca.Val == WILD_DRAW_FOUR
 }
 
 func (c Card) String() string {

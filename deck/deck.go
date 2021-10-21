@@ -2,10 +2,12 @@ package deck
 
 import (
 	"encoding/json"
+	"errors"
 	"math/rand"
 	"time"
 
 	. "wah.wtf/uno/card"
+	"wah.wtf/uno/player"
 )
 
 type Deck struct {
@@ -71,6 +73,20 @@ func (d *Deck) Shuffle() {
 	rand.Seed(time.Now().UnixNano())
 
 	rand.Shuffle(len(d.Cards), func(i, j int) { d.Cards[i], d.Cards[j] = d.Cards[j], d.Cards[i] })
+}
+
+func (d *Deck) Deal(players *[]player.Player) error {
+	if len(*players) > 10 {
+		return errors.New("too many players")
+	}
+
+	for i := 0; i < 7; i++ {
+		for j := 0; j < len(*players); j++ {
+			(*players)[j].Cards = append((*players)[j].Cards, *d.Take())
+		}
+	}
+
+	return nil
 }
 
 func (d Deck) String() string {

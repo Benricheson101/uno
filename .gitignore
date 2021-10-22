@@ -3,3 +3,6 @@
 *.vim
 
 /uno
+/uno_client
+/uno_server
+*.pb.go

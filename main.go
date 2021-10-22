@@ -51,6 +51,8 @@ func turn(g *game.UnoGame, reader *bufio.Reader) {
 	fmt.Printf("[%v] => ", i)
 
 	ln, _ := reader.ReadString('\n')
+	fmt.Println()
+
 	ln = strings.TrimSpace(strings.ToLower(ln))
 
 	if ln == "" {
@@ -102,11 +104,11 @@ func turn(g *game.UnoGame, reader *bufio.Reader) {
 	}
 
 	if c == nil {
-		fmt.Printf("you do not have a card %v %v. select another card\n", cardColor, cardVal)
+		fmt.Printf("you do not have a \"%v %v\". select another card\n", cardColor, cardVal)
 		return
 	}
 
-	fmt.Printf("PlayCard player_id=%v card_color=%v card_val=%v\n", p.Id, c.Color, c.Val)
+	// fmt.Printf("PlayCard player_id=%v card_color=%v card_val=%v\n", p.Id, c.Color, c.Val)
 
 	if err := g.PlayCard(p, *c); err != nil {
 		fmt.Println("Error playing card:", err)

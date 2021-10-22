@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package uno;
+option go_package = ".";
+
+service UnoGame {}
+
+// vim:si

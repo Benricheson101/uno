@@ -90,15 +90,18 @@ func (g *UnoGame) PlayCard(p *player.Player, c card.Card) error {
 	}
 
 	hasCard := false
+	cardIndex := 0
 
-	for _, ca := range p.Cards {
+	for i, ca := range p.Cards {
 		if (ca.Val == card.WILD || ca.Val == card.WILD_DRAW_FOUR) && ca.Val == c.Val {
 			hasCard = true
+			cardIndex = i
 			break
 		}
 
 		if ca.Color == c.Color && ca.Val == c.Val {
 			hasCard = true
+			cardIndex = i
 			break
 		}
 	}
@@ -121,7 +124,6 @@ func (g *UnoGame) PlayCard(p *player.Player, c card.Card) error {
 			g.LastPlayer = next
 
 		case card.SKIP:
-			// g.LastPlayer = p
 			_, skipped := g.NextPlayer()
 			g.LastPlayer = skipped
 
@@ -141,6 +143,8 @@ func (g *UnoGame) PlayCard(p *player.Player, c card.Card) error {
 
 		g.Stack.Push(c)
 		g.LastCard = &c
+
+		p.Cards = append(p.Cards[:cardIndex], p.Cards[cardIndex+1:]...)
 		return nil
 	}
 
